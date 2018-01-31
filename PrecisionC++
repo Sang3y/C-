@@ -1,0 +1,22 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+
+    double a = 231.26466780;
+    cout << "a = " << setprecision(4) << a << endl;
+    //Only 4 digits will be displayed including the leading ones. 
+    // will display 231.3 will round to the tenth
+    double b = 0.042;
+    cout << "a = " << setprecision(4) << b << endl;
+    //We want to display 8 disgits after the decimal point
+    cout << setprecision(8); //sets how many digits to display
+    //fixed forces to display exactly that number of digits after
+    // the decimal point.
+    cout << "a = " << fixed << a << "  b = " << fixed << b << endl;
+    //To display a number in scientific format.
+    cout << setprecision(5);
+    cout << "a = " << scientific << a << "  b = " << scientific << b << endl;
+    return 0;
+}
