@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+
+int main() {
+    cout << "The size of an int: " << sizeof(int) << endl;
+    long long var;
+    cout << "The size of an int: " << sizeof(var) << endl;
+    cout << "The size of an int: " << sizeof(float) << endl;
+    cout << "The size of an int: " << sizeof(double) << endl;
+    cout << "The size of an int: " << sizeof(char) << endl;
+    
+    return 0;
+}
