@@ -1,0 +1,56 @@
+#include <iostream>
+#include <fstream> //because we are going to manipulate files.
+#include <string>
+using namespace std; 
+
+//Outopout Files
+/*int main() {
+
+    ofstream MyOutputFile;
+    string fileName = "C:/ProfOmarC++/test.txt";
+    //open the file 
+    MyOutputFile.open(fileName.c_str());
+    //we cannot be sure the file was opened
+    //test if the file is really opened!
+    if (MyOutputFile.fail()) {
+        cout << "could not open the file! \n";
+        exit(1);
+    }
+    //you can write to the file exctely the same way 
+    // as you write to cout
+
+    MyOutputFile << "This is a first line \n";
+    MyOutputFile << "This is second line \n";
+
+    //Once you are done, you close the file
+    MyOutputFile.close();
+
+    return 0;
+}*/
+
+//input files
+int main() {
+    //declare an input file
+    ifstream inputFile;
+    //open the file 
+    inputFile.open("C:/ProfOmarC++/test.txt");
+    //see if it is indeed opened!
+    if (inputFile.fail()) {
+        cout << "Could not open the file\n";
+        exit(1);
+    }
+    //reading a file is just like reading from the keyboard (cin)
+    //eof tells if we reached the end of the file or not.
+    while (!inputFile.eof()) {
+        string temp;
+        //read a string from the file
+        inputFile >> temp; //reads one word into temp (no spaces)
+        
+        //getline(inputFile, temp);//reads an entire line from
+                // keybord (cin) or file including spaces
+        //write it to the screen
+        cout << temp << endl;
+
+    }
+    return 0;
+}
