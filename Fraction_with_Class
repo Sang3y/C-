@@ -1,0 +1,77 @@
+#include <iostream>
+#include <ostream>
+using namespace std;
+
+class Fraction {
+private:
+    int numerator = 0;
+    int denominator = 1;
+
+    //use a private methode just insie the function
+    int GCD() {
+        int a = numerator;
+        int b = denominator;
+
+        int remainder = a%b;
+        while (remainder != 0) {
+            a = b;
+            b = remainder;
+            remainder = a%b;
+        }
+        return b;
+    }
+public:
+    //mutators
+    void setNumerator(int a) {
+        numerator = a;
+    }
+    void setDenomintor(int a) {
+        denominator = a;
+    }
+    //change both
+    void setFraction(int a, int b) {
+        numerator = a;
+        denominator = b;
+    }
+    //accessors
+    int getNumerator() {
+        return numerator;
+    }
+    int getDenominator() {
+        return denominator;
+    }
+    //read fraction from the user
+    void read() {
+        cout << "enter fraction in form a/b:"; 
+        char temp;
+        cin >> numerator >> temp >> denominator;
+    }
+    //display in form a/b
+    void display() {
+        cout << numerator << "/" << denominator;
+    }
+    void reduce() {
+        //find GCD for numerator denominator
+        int g = GCD();
+        numerator = numerator / g;
+        denominator = denominator / g;
+    }
+    //fill in these methods 
+    //add a fraction to current fraction
+    
+};
+
+int main() {
+    //declare a Fraction initalize it to 2/5
+    Fraction frac;
+    frac.read();
+    cout << "frac = ";
+    frac.display();
+    cout << endl;
+
+    frac.reduce();
+    cout << "after reduce() frac = ";
+    frac.display();
+    cout << endl;
+    return 0;
+}
