@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+int main() {
+    //this program approximates the fixed point for the function 
+    //X^2 - 1. The error is less than 0.001
+    
+    //start with a value for X = 0
+    double X = 0;
+    //compute Fx 
+    double Fx = X*X - 1;
+    //while absolute value of difference X Fx is not less that 0.001
+    while (abs(Fx - X) >= 0.00000001) {
+        //Increase X by 0.01 
+        X = X + 0.00000001;
+        //Recompute Fx 
+        Fx = X*X - 1;
+    }
+    //display the result with 4 decimal values
+    cout << setprecision(10) << fixed << "X = " << X << " Fx = " << Fx << endl;
+    return 0;
+}
