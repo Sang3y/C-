@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    float inputGrade;
+    cout << "Please input your grade";
+    cin >> inputGrade;
+    //deal with special cases (exceptions)
+    if (inputGrade < 0 || inputGrade>100) {
+        cout << "Invalid input \n";
+        exit(1);
+    }
+    if (inputGrade >= 90) {
+        cout << "Your grade is A \n";
+    }else if (inputGrade >= 80) {
+        cout << "Your grade is B \n";
+    }
+    else if (inputGrade >= 70) {
+        cout << "Your grade is C \n";
+    }
+    else if (inputGrade >= 60) {
+        cout << "Your grade is D \n";
+    }
+    else { //input < 60 => F
+        cout << "Your grade is F \n";
+    }
+
+    return 0;
+}
