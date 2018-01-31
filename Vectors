@@ -1,0 +1,76 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+using namespace std;
+/*
+int main() {
+    vector <int> myVector;//a vector of 10 elements all 0
+    myVector.push_back(2);//add 2 to the vector
+    myVector.push_back(-2);
+    myVector.push_back(4);
+
+    cout << "size: " << myVector.size() << endl;
+    cout << "capacity: " << myVector.capacity() << endl;
+    cout << "max_size: " << myVector.max_size() << endl;
+    for (int i = 0; i < myVector.size(); i++) {
+        cout << "vect(" << i << ") = " << myVector.at(i) << endl;
+    }
+    //return the first value at 0
+    int num = myVector.front();
+    cout << "num = " << num << endl;
+    //remove the back
+    myVector.pop_back();
+    for (int i = 0; i < myVector.size(); i++) {
+        cout << "vect(" << i << ") = " << myVector.at(i) << endl;
+    }
+    
+    myVector.push_back(-6);//add 2 to the vector
+    myVector.push_back(-8);
+    myVector.push_back(4);
+
+    for (int i = 0; i < myVector.size(); i++) {
+        cout << "vect(" << i << ") = " << myVector.at(i) << endl;
+    }
+    sort(myVector.begin(), myVector.end());
+    
+    for (int i = 0; i < myVector.size(); i++) {
+        cout << "vect(" << i << ") = " << myVector.at(i) << endl;
+    }
+    
+    return 0;
+}
+*/
+
+int main() {
+    vector <string> names;
+    if (names.empty()) {
+        cout << "Vector is empty for now" << endl;
+    }
+    names.push_back("Beethoven sdhsdfhwfght");
+    names.push_back("Beethoven ghghdfsfgbfg");
+    names.push_back("Bach  ligsdpfihasdfgasd");
+    names.push_back("Boris dasfgsdfgdfgerg");
+    names.push_back("Mozart sdhsdft");
+    vector<string>::iterator it = names.begin()+3;
+    names.insert(it, "Michael");
+    cout << "Initial Vector" << endl;
+    for (int i = 0; i < names.size(); i++) {
+        cout << "vect(" << i << ") = " << names.at(i) << endl;
+    }
+    //sort alphabetically
+    sort(names.begin(), names.end());
+    cout << "Vector after sorting" << endl;
+    //display using iterators
+    for (it = names.begin(); it != names.end(); it++) {
+        cout << *it << endl;
+    }
+    //erase element at 3 Boris
+    cout << "Vector after erasing Boris" << endl;
+    it = names.begin() + 3;
+    names.erase(it);
+    for (it = names.begin(); it != names.end(); it++) {
+        cout << *it << endl;
+    }
+    return 0;
+}
