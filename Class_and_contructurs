@@ -1,0 +1,64 @@
+#include<iostream>
+using namespace std;
+
+class A {
+    //always member variables are set to private
+private:
+    int a;
+    int b;
+    //mathods generally are set to public so that they can be used by outside
+public:
+    //Default constructor is the constructor without arguments
+    A() {
+        a = 1;
+        b = 1;
+    }
+    //Constructor accepting two arguments
+    A(int x, int y) {
+        a = x;
+        b = y;
+    }
+    //Accessors are methods that return the attributes (the values of the private variables)
+    int geta() {
+        return a;
+    }
+    int getb() {
+        return b;
+    }
+    //Mutators aere methods that allow the outside to change the attributes (the values of the variables)
+    void seta(int x) {
+        a = x;
+    }
+    void setb(int x) {
+        b = x;
+    }
+    //a method to set both at the same time
+    void setBoth(int x, int y) {
+        a = x;
+        b = y;
+    }
+    //A method to display the attributes
+    void display() {
+        cout << "a = " << a << ",  b = " << b << endl;
+    }
+};
+int main() {
+    //create an object obj1 with default constructor
+    A obj1;
+    //display obj1
+    obj1.display();
+    //create an object obj2 set to 3 and -2 at the beginning
+    A obj2(3, -2);
+    //display obj2
+    obj2.display();
+    //change values of obj1 to -5, 8
+    obj1.setBoth(-5, 8);
+    //display obj1
+    obj1.display();
+    //change obg2.a to -1
+    obj2.seta(-1);
+    //display obj2
+    obj2.display();
+
+    return 0;
+}
