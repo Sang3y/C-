@@ -1,0 +1,175 @@
+#include <iostream>
+using namespace std;
+
+class cMultipleThree {
+private:
+    int num;
+public:
+    cMultipleThree() {
+        num = 0;
+    }
+    //constructor accepting an int error if the multiple is negative
+    cMultipleThree(int a) {
+        setNum(a);
+    }
+    //accessor for num
+    int getNum() {
+        return num;
+    }
+
+    //mutator to change num
+    void setNum(int a) {
+        if (a % 3 != 0) {
+            cout << "code 1: Invalid input, not multiple of 3\n";
+            a = a + 1;
+            if (a % 3 != 0) {
+                a = a+1;
+            }
+        }
+        // at this point a should be a multiple of 3
+        if (a < 0) {
+            cout << "code 10: Invalid value, negative number \n";
+        }
+        num = a;
+    }
+    //Overload the operators postfix ++ to return the actual object 
+    //and set num to the next multiple of 3. 
+    friend cMultipleThree operator++ (cMultipleThree & left, int dummy) {
+        cMultipleThree temp(left);
+        left.setNum(left.num +3);
+        return temp;
+    }
+    //Overload the operators prefix -- to return the actual object 
+    //and set num to the previous multiple of 3. 
+    friend cMultipleThree operator-- (cMultipleThree & left) {
+        left.setNum(left.num - 3);
+        return left;
+    }
+    //Overload operators + and – between two cMultipleThree that should return 
+    //a cMultipleThree. If the result is negative, 
+    //display “code 5: +/ -yielding negative number”
+    friend cMultipleThree operator +(cMultipleThree left, cMultipleThree right) {
+        cMultipleThree result;
+        result.num = left.num + right.num;
+        if (result.num < 0) {
+            cout << "code 5: +/- yielding negative number\n";
+        }
+        return result;
+    }
+    friend cMultipleThree operator -(cMultipleThree left, cMultipleThree right) {
+        cMultipleThree result;
+        result.num = left.num - right.num;
+        if (result.num < 0) {
+            cout << "code 5: +/- yielding negative number\n";
+        }
+        return result;
+    }
+    //Overload operators + and – between an cMultipleThree and an integer 
+    //returning an cMultipleThree. The integer is added to num (for +); 
+    //if the result of the addition is not a multiple of 3, 
+    //num must be set to the first multiple of 3 greater than the result (same for -). 
+    //If the result is negative display “code 5: +/- yielding a negative number” 
+    friend cMultipleThree operator +(cMultipleThree left, int right) {
+        cMultipleThree result;
+        result.setNum(left.num + right);
+        if (result.num < 0) {
+            cout << "code 5: +/- yielding a negative number\n";
+        }
+        return result;
+    }
+    friend cMultipleThree operator -(cMultipleThree left, int right) {
+        cMultipleThree result;
+        result.setNum(left.num - right);
+        if (result.num < 0) {
+            cout << "code 5: +/- yielding a negative number\n";
+        }
+        return result;
+    }
+    //Overload operators + and – between an Integer and an cMultipleThree 
+    // returning an Integer.
+    friend int operator +(int left, cMultipleThree right) {
+        int result;
+        result = left + right.num;
+        return result;
+    }
+    friend int operator -(int left, cMultipleThree right) {
+        int result;
+        result = left - right.num;
+        return result;
+    }
+    //Overload the operators << and >> to output and input num.
+    friend ostream& operator << (ostream &os, cMultipleThree right) {
+        os << "num = " << right.num;
+        return os;
+    }
+    friend istream& operator >> (istream& is, cMultipleThree& left) {
+        is >> left.num;
+        return is;
+    }
+};
+
+void main() {
+    cMultipleThree n1(6), n2; //n1=6, n2=0
+    cMultipleThree n3 = n2 - n1;
+    cout << "n3 = " << n3 << endl;//n3= -6 (Error Code 5: +/- yields  negative)
+    n1 = n1 + 5;
+    cout << "n1 = " << n1 << endl;// n1=12 Not a multiple of 3!!
+    n1 = n2++;
+    cout << "n1 = " << n1 << " n2 = " << n2 << endl; //n1=0, n2 = 3
+    int var = -5 - n1;
+    cout << "n1 = " << n1 << " var = " << var << endl;//n1 =0, var = -5
+    n3 = (--n1) + 2; //n1=-3, n3= 0 Error Code 5 (10)
+    cout << "n1 = " << n1 << " n3 = " << n3 << endl;
+    {
+        cMultipleThree n3;
+        n3.setNum(5); //n3 = 6 Not a multiple of 3
+        n1 = n1 + n3;
+        cout << "n1 = " << n1 << " n3 = " << n3 << endl;//n1 = 3, n3=6
+    }
+    cout << "n1 = " << n1 << " n3 = " << n3 << endl;//n1 = 3, n3=0
+}
+
+
+PROBLEM 2
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+bool strfunc(string str1, string str2, int start)
+{
+    int K = str1.length();
+    int L = str2.length();
+    if (L > K - start)
+         return false;
+    for (int i = 0; i < L; i++)
+    {
+        if (str1[start + i] != str2[i])
+            return false;
+    }
+    return true;
+}
+//This function returns true if str2 is contained in str1 starting at start
+// str1 = "hi there how are you"  str2 = "there" 
+
+bool partOf(string str1, string str2) {
+    for (int i = 0; i <= str1.length() - str2.length(); i++) {
+        if (strfunc(str1, str2, i) == true) {
+            return true;
+        }
+    }
+    return false;
+}
+int main() {
+    string s, s1;
+    cout << "enter two strings on separate lines: ";
+    getline(cin, s);
+    getline(cin, s1);
+    if (partOf(s, s1) == true) {
+        cout << s1 << "  is part of " << s << endl;
+    }
+    else {
+        cout << s1 << "  is NOT part of " << s << endl;
+    }
+    return 0;
+}
