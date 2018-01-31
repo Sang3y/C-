@@ -1,0 +1,43 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    //Declare an input file 
+    ifstream MyFile;
+    //open the file
+    MyFile.open("C:/ProfOmarC++/data.txt");
+    //check if the file is open or not
+    if (!MyFile.is_open()) {
+        cout << "Enable to open file\n";
+        exit(1);
+    }
+    //At this point the file exists and it is open
+    //read the data from the file
+    int feet, inches;
+    /*while (!MyFile.eof()) {
+        string name;
+        getline(MyFile, name);
+        MyFile >> feet;
+        MyFile >> inches;
+        MyFile.ignore();
+        //5 first feet 110 LB
+        int idealWeight = 110 + ((feet - 5) * 12 + inches) * 5;
+        cout << "Ideal weigh for " << name << " is " << idealWeight << endl;
+    }*/
+    while (!MyFile.eof()) {
+        string name;
+        getline(MyFile, name);
+        string temp;
+        getline(MyFile, temp);
+        feet = atoi(temp.c_str());
+        getline(MyFile, temp);
+        inches = atoi(temp.c_str());
+        //5 first feet 110 LB
+        int idealWeight = 110 + ((feet - 5) * 12 + inches) * 5;
+        cout << "Ideal weigh for " << name << " is " << idealWeight << endl;
+    }
+    MyFile.close();
+    return 0;
+}
