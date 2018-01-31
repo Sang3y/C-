@@ -1,0 +1,13 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double A, B;
+    cout << "enter two doubles: ";
+    cin >> A >> B;
+    cout << "value is: " << sqrt((pow(A, 3) - sqrt(pow(B, 4) - pow(A, 2))) \
+        / (pow(B - A, 3)*pow(B, 1 / 5.0))) << endl;
+
+    return 0;
+}
