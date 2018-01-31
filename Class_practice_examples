@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+
+class C {
+private:
+    int S;
+    char t;
+
+public:
+    void init() {
+        S = 3;
+        t = 'i';
+    }
+    //accessors
+    int getS() {
+        return S;
+    }
+    char getT() {
+        return t;
+    }
+    //mutators
+    void setS(int a) {
+        S = a;
+    }
+    void setT(char a) {
+        t = a;
+    }
+    //other methods
+    void show() {
+        cout << "S = " << S << "   T = " << t << endl;
+    }
+    void Down() {
+        t = tolower(t);
+    }
+    //overload
+    void Down(int a) {
+        S = S - a;
+    }
+    void Up() {
+        t = toupper(t);
+    }
+    void Up(int a) {
+        S = S + a;
+    }
+};
+
+int main() {
+    //create an instance of C
+    C myC;
+    //intitialize it
+    myC.init();
+    //show it
+    myC.show();
+    //set S to 8 and t to 'm'
+    myC.setS(8);
+    myC.setT('m');
+    //show
+    myC.show();
+    cout << "S is " << myC.getS() << "   T is " << myC.getT() << endl;
+    myC.Down();
+    myC.show();
+    myC.Down(4);
+    myC.show();
+    myC.Up();
+    myC.Up(6);
+    myC.show();
+    //create another object yourC
+    C yourC;
+    //assign myC to yourC
+    yourC = myC; //copy myC into yourC
+    cout << "Objects are: " << endl;
+    myC.show();
+    yourC.show();
+    //Up your C by 5
+    yourC.Up(5);
+    cout << "Objects are: " << endl;
+    myC.show();
+    yourC.show();
+
+    return 0;
+}
