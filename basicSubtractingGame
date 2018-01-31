@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int player1, player2, num;
+    cout <<"Welcome to Subtractum"<< endl;
+    cout <<"Choose a number to start with: ";
+    cin >> num;
+    while(num>0)
+    {
+        
+        cout <<"Enter your number player 1: ";
+        cin >> player1;
+        num = num-player1;
+        while(num<0)
+        {
+            num = num+player1;
+            cout<<"You entered number that goes pass below zero, try again" << endl;
+            cout <<"Enter your number again player 1: ";
+            cin >> player1;
+            num = num-player1;
+        }
+        
+        if(num==0)
+        {
+            cout <<"Player 1 won" << endl;
+            return 0;
+        }
+        
+        cout <<"Enter your number player 2: ";
+        cin >> player2;
+        num = num-player2;
+        while(num<0)
+        {
+            num = num+player2;
+            cout<<"You entered number that goes pass below zero, try again" << endl;
+            cout <<"Enter your number again player 2: ";
+            cin >> player2;
+            num = num-player2;
+        }
+        if(num==0)
+        {
+            cout <<"player 2 won" << endl;
+        }
+        
+    }
+    
+}
