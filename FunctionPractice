@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+string YourFunct(double, int, string);
+int main() {
+    double MyD;
+    int MuInt;
+    string MySt;
+    cout << "Please enter a double followed by an int and a string : ";
+    cin >> MyD >> MuInt >> MySt;
+    string MyRes= YourFunct(MyD, MuInt, MySt);
+    cout << "MyRes = " << MyRes << endl;
+    return 0;
+}
+
+string YourFunct(double a, int b, string s) {
+    cout << "I am receiving these inputs \n";
+    cout << "First: " << a << endl;
+    cout << "Second: " << b << endl;
+    cout << "Third: " << s << endl;
+
+    cout << "Returning the string \"Hi\"" << endl;
+    return "Hi";
+}
