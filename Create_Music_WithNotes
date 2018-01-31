@@ -1,0 +1,46 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+int main()
+{
+
+   cout << "The name of this song is Mary had a little lamb" << endl;
+    Beep(329, 500);     //E
+    Beep(293, 500);     //D
+    Beep(261, 500);     //C
+    Beep(293, 500);     //D
+    Beep(329, 500);     //E
+    Beep(329, 500);     //E
+    Beep(329, 1000);    //E
+    Beep(293, 500);     //D
+    Beep(293, 500);     //D
+    Beep(293, 1000);    //D
+    Beep(329, 500);     //E
+    Beep(392, 500);     //G
+    Beep(392, 1000);    //G
+    Beep(329, 500);     //E
+    Beep(293, 500);     //D
+    Beep(261, 500);     //C
+    Beep(293, 500);     //D
+    Beep(329, 500);     //E
+    Beep(329, 500);     //E
+    Beep(329, 1000);    //E
+    Beep(293, 500);     //D
+    Beep(293, 500);     //D
+    Beep(329, 500);     //E
+    Beep(293, 500);     //D
+    Beep(261, 1000);    //C
+    // Beep(220, 1000);  // A
+    // Beep(233, 1000);  // A#
+    // Beep(247, 1000);  // B
+    // Beep(262, 1000);  // C
+    // Beep(277, 1000);  // C#
+    // Beep(294, 1000);  // D
+    // Beep(311, 1000);  // D#
+    // Beep(330, 1000);  // E
+    // Beep(349, 1000);  // F
+    // Beep(370, 1000);  // F#
+    // Beep(392, 1000);  // G
+    // Beep(415, 1000);  // G#
+    return 0;
+}
