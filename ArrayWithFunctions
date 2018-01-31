@@ -1,0 +1,147 @@
+#include
+
+<iostream>
+
+using
+
+namespace std;
+
+class Calculator {
+
+//member variables
+
+private:
+
+double num1;
+
+double num2;
+
+
+public:
+
+//mutators are methods that allow you to change private members
+
+void setNum1(double a) {
+
+num1 = a;
+
+}
+
+void setNum2(double b) {
+
+num2 =b;
+
+}
+
+//Accessors are methods that allow you to access a private members
+
+double getNum1() {
+
+return num1;
+
+}
+
+double getNum2() {
+
+return num2;
+
+}
+
+//Define a method Read that reads the two numbers from the user.
+
+//Always reuse your methods whenever possible
+
+void read() {
+
+double temp;
+
+cout << "Enter the two numbers: ";
+
+cin >> temp;
+
+setNum1(temp);
+
+cin >> temp;
+
+setNum2(temp);
+
+}
+
+void display() {
+
+cout << "num1 = " << getNum1() << "  num2 = " << num2 << endl;
+
+}
+
+//methods
+
+void sum() {
+
+cout << num1 << " + " << num2 << " = " << num1 + num2 << endl;
+
+}
+
+void product() {
+
+cout << num1 << " * " << num2 << " = " << num1 * num2 << endl;
+
+}
+
+void difference() {
+
+cout << num1 << " - " << num2 << " = " << num1 - num2 << endl;
+
+}
+
+void quotient() {
+
+cout << num1 << " / " << num2 << " = " << num1 / num2 << endl;
+
+}
+
+};
+
+
+int main() {
+
+//declare a local object cal
+
+Calculator cal;
+
+//change the attributes of cal, use mutators
+
+cal.setNum1(3.5);
+
+cal.setNum2(4.0);
+
+//display the sum
+
+cal.sum();
+
+//display the product
+
+cal.product();
+
+//Decalre another object Calculator calc1
+
+Calculator calc1;
+
+//set the numbers to 6 and -2.3
+
+calc1.setNum1(6.0);
+
+calc1.setNum2(-2.3);
+
+calc1.sum();
+
+//change the values for cal from the user
+
+cal.read();
+
+cal.display();
+
+cal.sum();
+
+return 0;
+
+}
