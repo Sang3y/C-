@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    //need two inputs integers
+    int firstNumber, secondNumber;
+    //display an invite
+    cout << "Enter two integer numbers:";
+    //get the numbers fron the user
+    cin >> firstNumber >> secondNumber;
+
+    if (firstNumber < secondNumber) {
+        cout << "Order: " << firstNumber << ", " << secondNumber << endl;
+    }else {
+        cout << "Order: " << secondNumber << ", " << firstNumber << endl;
+    }
+    return 0;
+}
