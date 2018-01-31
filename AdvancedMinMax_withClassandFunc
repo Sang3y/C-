@@ -1,0 +1,116 @@
+#include <iostream>
+using namespace std;
+
+class MinMax {
+private: 
+    int mMin;
+    int mMax;
+public:
+    MinMax() {
+        mMax = 0;
+        mMin = 0;
+    }
+    MinMax(int max, int min) {
+        setMinMax(max, min);
+    }
+    // mutator to change both min and max
+    void setMinMax(int max, int min) {
+        if (max < min) {
+            cout << "Error Code 10: max is smaller than min \n";
+            mMin = max;
+            mMax = min;
+        }
+        else {
+            mMin = min;
+            mMax = max;
+        }
+    }
+    //mutators for mMax and mMin
+    void setMax(int m) {
+        if (m < mMin) {
+            mMax = mMin;
+            mMin = m;
+        }
+        else {
+            mMax = m;
+        }
+    }
+    void setMin(int m) {
+        if (m > mMax) {
+            mMin = mMax;
+            mMax = m;
+        }
+        else {
+            mMin = m;
+        }
+    }
+    //Overload the operator << to display mMin and mMax.
+    friend ostream & operator << (ostream &os, MinMax m) {
+        os << "(" << m.mMax << ", " << m.mMin <<")";
+        return os;
+    }
+    //Overload the operator prefix ++ to increase each mMax and mMin by one. 
+    friend MinMax& operator ++(MinMax& m) {
+        m.mMax++;
+        m.mMin++;
+        return m;
+    }
+    //Overload the operator postfix ++ to increase each mMax and mMin by one. 
+    friend MinMax operator ++(MinMax& m, int dump) {
+        MinMax temp(m);
+        m.mMax++;
+        m.mMin++;
+        return temp;
+    }
+    //Overload operator + between two MinMax objects that should return a MinMax object. 
+    friend MinMax operator + (MinMax L, MinMax R) {
+        MinMax Result;
+        Result.setMinMax(L.mMax + R.mMax, L.mMin + R.mMin);
+        return Result;
+    }
+    //Overload operator * between a MinMax object and an integer returning a MinMax 
+    //object by multiplying both mMax and mMin by the integer. 
+    //(hint: the integer can be of any sign)
+    //MinMax M2 = M1 * (-4);// 3, 8   *(-4)  -12,  -24
+    friend MinMax operator *(MinMax L, int R) {
+        if (R < 0) {
+            return MinMax(R*L.mMin, R*L.mMax);
+        }
+        else {
+            return MinMax(R*L.mMax, R*L.mMin);
+        }
+    }
+    //Overload the operator [] to return mMax for [0] (index 0) and mMin for index 1, 
+    //it displays message “Code 20: out of bounds” if index is not 0 or 1.
+    int operator [] (int index) {
+        if (index == 0) {
+            return mMax;
+        }
+        else if (index == 1) {
+            return mMin;
+        }
+        else {
+            cout << "Code 20: out of bounds\n";
+            return -1;
+        }
+    }
+};
+
+int main() {
+    MinMax n1(2, 1), n2;
+    int var = -5;
+    MinMax n3 = n2 + n1;
+    cout << "n3 = " << n3 << endl;//(2, 1)
+    n2 = n1++;
+    cout << "n1 = " << n1 << " n2 = " << n2 << endl;//n1=(3, 2) n2=(2, 1)
+    n3 = (++n1) * var;
+    cout << "n1 = " << n1 << " n3 = " << n3 << endl;//n1= (4, 3) n3 = (-15, -20)
+    MinMax n4(2, 5); //n4 =(5, 2)
+    n1 = n1 + n4;
+    cout << "n1 = " << n1 << " n4 = " << n4 << endl;//n1=(9, 5)
+    var = n1[1];
+    cout << "var = " << var << endl; //var = 5;
+    var = n1[2];
+    cout << "var = " << var << endl;//"outof bounds
+    return 0;
+}
