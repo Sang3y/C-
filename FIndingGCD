@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+int main() {
+    ////need two integer inputs
+    int first, second;
+    //get values from the user
+    cout << "This program computes the GCD between two integers\n";
+    cout << "Enter two intgers: ";
+    cin >> first >> second;
+    cout << "GCD(" << first << ", " << second << ")= ";
+    //compute remainder first
+    int Rem = first % second;
+    while (Rem != 0) {
+        first = second;
+        second = Rem;
+        Rem = first % second;
+    }
+    cout << second << endl;
+
+    return 0;
+}
