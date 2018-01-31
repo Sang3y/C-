@@ -1,0 +1,127 @@
+#include<iostream>
+using namespace std;
+
+class A {
+    //always member variables are set to private
+private:
+    int a;
+    int b;
+    //mathods generally are set to public so that they can be used by outside
+public:
+    //Default constructor is the constructor without arguments
+    A() {
+        a = 1;
+        b = 1;
+    }
+    //Constructor accepting two arguments
+    A(int x, int y) {
+        a = x;
+        b = y;
+    }
+    //Accessors are methods that return the attributes (the values of the private variables)
+    int geta() {
+        return a;
+    }
+    int getb() {
+        return b;
+    }
+    //Mutators aere methods that allow the outside to change the attributes (the values of the variables)
+    void seta(int x) {
+        a = x;
+    }
+    void setb(int x) {
+        b = x;
+    }
+    //a method to set both at the same time
+    void setBoth(int x, int y) {
+        a = x;
+        b = y;
+    }
+    //A method to display the attributes
+    void display() {
+        cout << "a = " << a << ",  b = " << b << endl;
+    }
+    // amethod to add two object of class A
+    //Add is designed as a member method of this class, but it can be designed as a function
+    A Add(A right) {
+        A result;
+        result.seta(a + right.a);
+        result.setb(b + right.b);
+        return result;
+        //can be done in one sigle instruction 
+        //return A(a + right.a, b + right.b);
+    }
+    //Design add function as a friend
+    friend class B;
+    friend A AddFriend(A left, A right);
+    //overloading operator + for class A
+    friend A operator + (A left, A right);
+    //TODO: Do the same for *, -, /
+
+    //overload <<. operator << has always to be a friend (it cannot be a member method)
+    // because the left is of type ostream and will never be of the type class. 
+    friend ostream& operator << (ostream &os, A &right);
+    //Overloading >> for class A 
+    friend istream& operator >> (istream &is, A &right);
+};
+//Design Add as a stanalone function
+A AddFriend(A left, A right) {
+    A result;
+    result.seta(left.a + right.a);
+    result.setb(left.b + right.b);
+    return result;
+}
+//overloading operator + for class A as a friend
+A operator + (A left, A right) {
+    A result;
+    result.seta(left.a + right.a);
+    result.setb(left.b + right.b);
+    return result;
+}
+//overloading operator <<
+ostream& operator << (ostream &os, A &right) {
+    os << "a = " << right.a << ", b = " << right.b;
+    return os;
+}
+//overloading operator >>
+istream& operator >> (istream &is, A &right) {
+    is >> right.a >> right.b;
+    return is;
+}
+int main() {
+    //create an object obj1 with default constructor
+    A obj1;
+    //display obj1
+    obj1.display();
+    //create an object obj2 set to 3 and -2 at the beginning
+    A obj2(3, -2);
+    //display obj2
+    obj2.display();
+    //change values of obj1 to -5, 8
+    obj1.setBoth(-5, 8);
+    //display obj1
+    cout << "Obj1: " << obj1 << endl;
+    //change obg2.a to -1
+    obj2.seta(-1);
+    //display obj2
+    cout << "obj2:" << obj2 << endl;
+    //create an object obj3 that is the sum of obj1 and obj2
+    A obj3 = obj1.Add(obj2);
+    cout << "Obj3: " << obj3 << endl;
+    obj3 = obj2.Add(obj1);
+    cout << "Obj3: " << obj3 << endl;
+
+    //obj4 using AddFriend
+    A obj4 = AddFriend(obj1, obj2);
+    cout << "Obj4: " << obj4 << endl;
+    //usinf + instead of AddFriend
+    A obj5 = obj1 + obj4;
+    cout << "Obj5: " << obj5 << endl;
+
+    //using >> operator;
+    cout << "Please enter values for obj5 and obj4: ";
+    cin >> obj5 >> obj4;
+    cout << "Obj5 is now: " << obj5 << endl;
+    cout << "Obj4 is now: " << obj4 << endl;
+    return 0;
+}
