@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, min;
+    cout << "Enter a number:";
+    cin >> n;
+    min = n;
+    while (n != 0) {
+        if (n < min) {
+            min = n;
+        }
+        cout << "Enter a number:";
+        cin >> n;
+    }
+    cout << "the minimum is: " << min << endl;
+    return 0;
+}
